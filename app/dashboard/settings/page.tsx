@@ -1,12 +1,9 @@
+import Sidebar from "../../components/Sidebar";
+
 export default function Settings() {
   return (
     <div className="flex min-h-screen bg-zinc-50 dark:bg-black">
-      <aside className="w-60 border-r border-black/10 dark:border-white/10 p-6 flex flex-col gap-2">
-        <h2 className="text-xl font-bold text-black dark:text-white mb-6">CloudDeploy</h2>
-        <a href="/dashboard" className="px-3 py-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:bg-white/10">Dashboard</a>
-        <a href="/dashboard/projects" className="px-3 py-2 rounded-lg text-zinc-600 dark:text-zinc-400 hover:bg-black/5 dark:hover:bg-white/10">Projects</a>
-        <a href="/dashboard/settings" className="px-3 py-2 rounded-lg bg-black/5 dark:bg-white/10 text-black dark:text-white font-medium">Settings</a>
-      </aside>
+      <Sidebar active="Settings" />
 
       <main className="flex-1 p-8 max-w-xl">
         <h1 className="text-2xl font-semibold text-black dark:text-white mb-6">Settings</h1>
@@ -18,16 +15,12 @@ export default function Settings() {
           <label className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Email</label>
           <input type="email" defaultValue="faryal@example.com" className="px-4 py-3 rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-zinc-900 text-black dark:text-white" />
 
-          <button className="self-start px-4 py-2 rounded-lg bg-black text-white dark:bg-white dark:text-black font-medium hover:opacity-80 transition">
-            Save Changes
-          </button>
+          <button className="self-start px-4 py-2 rounded-lg bg-black text-white dark:bg-white dark:text-black font-medium hover:opacity-80 transition">Save Changes</button>
         </div>
 
         <div className="border-t border-black/10 dark:border-white/10 pt-6">
           <h2 className="text-lg font-medium text-black dark:text-white mb-2">Danger Zone</h2>
-          <button className="px-4 py-2 rounded-lg border border-red-300 text-red-600 dark:border-red-900 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition">
-            Delete Account
-          </button>
+          <button className="px-4 py-2 rounded-lg border border-red-300 text-red-600 dark:border-red-900 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition">Delete Account</button>
         </div>
       </main>
     </div>
