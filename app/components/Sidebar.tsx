@@ -1,4 +1,31 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "../../lib/supabase";
+
 export default function Sidebar({ active }: { active: string }) {
+  const router = useRouter();
+  const supabase = createClient();
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+  async function loadUser() {
+    const { data, error } = await supabase.auth.getUser();
+    console.log("Supabase user data:", data);
+    console.log("Supabase error:", error);
+    if (data?.user?.email) {
+      setUserEmail(data.user.email);
+    }
+  }
+  loadUser();
+}, []);
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    router.push("/login");
+  }
+
   const links = [
     { href: "/dashboard", label: "Dashboard" },
     { href: "/dashboard/projects", label: "Projects" },
@@ -21,6 +48,18 @@ export default function Sidebar({ active }: { active: string }) {
           </a>
         );
       })}
+
+      <div className="mt-auto pt-6 border-t border-black/10 dark:border-white/10">
+        {userEmail && (
+          <p className="text-xs text-zinc-500 mb-2 truncate">{userEmail}</p>
+        )}
+        <button
+          onClick={handleLogout}
+          className="text-sm text-red-600 dark:text-red-400 hover:underline"
+        >
+          Log Out
+        </button>
+      </div>
     </aside>
   );
 }
